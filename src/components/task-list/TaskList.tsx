@@ -8,6 +8,7 @@ import TaskItem from "../task-item";
 import { Text } from "react-native";
 import { FILTER_LIST } from "../../constans/filter";
 import { FilterType } from "../../typings/Filter";
+import { THEME_DEFAULT } from "../../constans/theme";
 
 const tasks: TaskItemType[] = [
   { id: "1", content: "Todo 1", status: TASK_STATUS_COMPLETED },
@@ -29,20 +30,29 @@ const TaskList: FunctionComponent = () => {
             <TaskItem task={task} key={task.id} />
           ))}
 
-          <Styled.SettingRow>
-            <Text> {activeNumber} items left</Text>
+          <Styled.SettingRow theme={THEME_DEFAULT}>
+            <Styled.SettingRowText theme={THEME_DEFAULT}>
+              {" "}
+              {activeNumber} items left
+            </Styled.SettingRowText>
             {completedNumber > 0 && (
               <Styled.ClearCompletedButton>
-                <Text>Clear Completed</Text>
+                <Styled.SettingRowText theme={THEME_DEFAULT}>
+                  {" "}
+                  Clear Completed
+                </Styled.SettingRowText>
               </Styled.ClearCompletedButton>
             )}
           </Styled.SettingRow>
         </Styled.TaskListWrapper>
       </Styled.TaskListContent>
-      <Styled.FilterRow>
+      <Styled.FilterRow theme={THEME_DEFAULT}>
         {FILTER_LIST.map((filter: FilterType) => (
           <Styled.FilterButton key={filter}>
-            <Styled.FilterButtonText active={filter === "All"}>
+            <Styled.FilterButtonText
+              active={filter === "All"}
+              theme={THEME_DEFAULT}
+            >
               {filter}
             </Styled.FilterButtonText>
           </Styled.FilterButton>

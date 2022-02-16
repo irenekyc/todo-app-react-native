@@ -2,7 +2,10 @@ import styled from "styled-components/native";
 import {
   ItemRowStyles,
   BoxShadowStyle,
-  TextLightStyles,
+  ItemRowStylesDark,
+  themeLightTextLight,
+  themeDarkTextLight,
+  activeBlue,
 } from "../../global-styles";
 
 interface FilterButtonTextProps {
@@ -29,7 +32,12 @@ export const TaskListWrapper = styled.View`
 `;
 
 export const SettingRow = styled.View`
-  ${ItemRowStyles}
+  ${(props) => (props.theme === "light" ? ItemRowStyles : ItemRowStylesDark)}
+`;
+
+export const SettingRowText = styled.Text`
+  color: ${(props) =>
+    props.theme === "light" ? themeLightTextLight : themeDarkTextLight};
 `;
 
 export const ClearCompletedButton = styled.TouchableOpacity`
@@ -37,7 +45,7 @@ export const ClearCompletedButton = styled.TouchableOpacity`
 `;
 
 export const FilterRow = styled.View`
-  ${ItemRowStyles};
+  ${(props) => (props.theme === "light" ? ItemRowStyles : ItemRowStylesDark)}
   border-radius: 12px;
   padding-left: 50px;
   padding-right: 50px;
@@ -50,7 +58,8 @@ export const FilterButton = styled.TouchableOpacity`
 `;
 
 export const FilterButtonText = styled.Text<FilterButtonTextProps>`
-  ${TextLightStyles}
-  ${(props) => props.active && "color: blue"};
+  color: ${(props) =>
+    props.theme === "light" ? themeLightTextLight : themeDarkTextLight};
+  ${(props) => props.active && `color: ${activeBlue}`};
   text-transform: capitalize;
 `;

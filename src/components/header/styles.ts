@@ -1,5 +1,12 @@
 import styled from "styled-components/native";
-import { ItemRowStyles } from "../../global-styles";
+import {
+  ItemRowStyles,
+  ItemRowStylesDark,
+  themeDarkTextDark,
+  themeLightTextLight,
+  themeLightTextDark,
+  themeDarkTextLight,
+} from "../../global-styles";
 
 export const HeaderBackgroundImage = styled.ImageBackground`
   width: 100%;
@@ -29,11 +36,19 @@ export const ThemeToggleButton = styled.TouchableOpacity`
 `;
 
 export const InputDiv = styled.View`
-  ${ItemRowStyles};
+  ${(props) => (props.theme === "light" ? ItemRowStyles : ItemRowStylesDark)};
   border-radius: 12px;
 `;
 
-export const NewTaskInput = styled.TextInput`
+export const NewTaskInput = styled.TextInput.attrs((props) => ({
+  placeholderTextColor: `${
+    props.theme === "light" ? themeLightTextLight : themeDarkTextLight
+  }`,
+}))`
   flex: 1;
   margin-left: 12px;
+  font-size: 18px;
+
+  color: ${(props) =>
+    props.theme === "light" ? themeLightTextDark : themeDarkTextDark};
 `;

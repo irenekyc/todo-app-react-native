@@ -1,6 +1,16 @@
 import styled, { css } from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 
+export const themeDarkCardBackground = "hsl(235, 24%, 19%)";
+
+export const activeBlue = "hsl(220, 98%, 61%)";
+
+export const themeDarkTextDark = "hsl(234, 39%, 85%)";
+export const themeDarkTextLight = "hsl(234, 11%, 52%)";
+
+export const themeLightTextDark = "hsl(235, 19%, 35%)";
+export const themeLightTextLight = "hsl(233, 11%, 84%)";
+
 export const ItemRowStyles = css`
   padding: 16px;
   display: flex;
@@ -9,12 +19,22 @@ export const ItemRowStyles = css`
   background: white;
 `;
 
+export const ItemRowStylesDark = css`
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #34364c;
+`;
+
 export const Container = styled.View`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: ${(props) =>
+    props.theme === "light" ? "hsl(0, 0%, 98%)" : "black"};
 `;
 
 export const BoxShadowStyle = css`

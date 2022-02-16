@@ -1,13 +1,30 @@
 import styled from "styled-components/native";
-import { ItemRowStyles } from "../../global-styles";
+import {
+  ItemRowStyles,
+  ItemRowStylesDark,
+  themeDarkTextLight,
+  PrimaryText,
+  themeLightTextDark,
+  themeDarkTextDark,
+} from "../../global-styles";
 
 export const TaskItem = styled.View`
+  ${(props) =>
+    props.theme === "light"
+      ? `
   ${ItemRowStyles};
   border-bottom-color: lightgray;
+  `
+      : `${ItemRowStylesDark};
+  border-bottom-color: ${themeDarkTextLight};
+  `}
+
   border-bottom-width: 1px;
 `;
 
 export const TaskItemContent = styled.Text`
+  color: ${(props) =>
+    props.theme === "light" ? themeLightTextDark : themeDarkTextDark};
   flex: 1;
   text-align: left;
   margin-left: 12px;
