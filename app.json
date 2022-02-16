@@ -1,11 +1,10 @@
 {
   "expo": {
+    "entryPoint": "./src/index.tsx",
     "name": "todo-app-native",
     "slug": "todo-app-native",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
   "name": "todo-app-native"
 }
