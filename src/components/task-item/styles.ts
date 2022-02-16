@@ -3,7 +3,6 @@ import {
   ItemRowStyles,
   ItemRowStylesDark,
   themeDarkTextLight,
-  PrimaryText,
   themeLightTextDark,
   themeDarkTextDark,
 } from "../../global-styles";

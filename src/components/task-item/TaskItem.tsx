@@ -2,9 +2,12 @@ import React, { FunctionComponent } from "react";
 import * as Styled from "./styles";
 import { TaskItemType } from "../../typings/Task";
 import Checkbox from "../checkbox";
-import { TASK_STATUS_COMPLETED } from "../../constans/task";
+import { TASK_STATUS_COMPLETED, TASK_STATUS_ACTIVE } from "../../constans/task";
 import Icon from "react-native-vector-icons/Entypo";
-import { THEME_DEFAULT } from "../../constans/theme";
+import { RootState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { TouchableOpacity } from "react-native";
+import { updateTaskStatus, deleteTask } from "../../reducer/task/actions";
 
 interface TaskItemProps {
   task: TaskItemType;
@@ -13,14 +16,32 @@ interface TaskItemProps {
 const TaskItem: FunctionComponent<TaskItemProps> = ({
   task,
 }: TaskItemProps) => {
-  const { content, status } = task;
+  const { content, status, id } = task;
+  const { theme } = useSelector((state: RootState) => state.theme);
+  const dispatch = useDispatch();
+  const onClickCheckBox = () => {
+    dispatch(
+      updateTaskStatus({
+        taskId: id,
+        updatedStatus:
+          status === TASK_STATUS_ACTIVE
+            ? TASK_STATUS_COMPLETED
+            : TASK_STATUS_ACTIVE,
+      })
+    );
+  };
+
+  const onClickDeleteButton = () => {
+    dispatch(deleteTask(id));
+  };
+
   return (
-    <Styled.TaskItem theme={THEME_DEFAULT}>
-      <Checkbox active={status === TASK_STATUS_COMPLETED} />
-      <Styled.TaskItemContent theme={THEME_DEFAULT}>
-        {content}
-      </Styled.TaskItemContent>
-      <Styled.TaskItemDeleteButton>
+    <Styled.TaskItem theme={theme}>
+      <TouchableOpacity onPress={() => onClickCheckBox()}>
+        <Checkbox active={status === TASK_STATUS_COMPLETED} />
+      </TouchableOpacity>
+      <Styled.TaskItemContent theme={theme}>{content}</Styled.TaskItemContent>
+      <Styled.TaskItemDeleteButton onPress={onClickDeleteButton}>
         <Icon name="cross" color="gray" size={24} />
       </Styled.TaskItemDeleteButton>
     </Styled.TaskItem>

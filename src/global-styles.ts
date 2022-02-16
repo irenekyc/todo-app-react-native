@@ -27,16 +27,6 @@ export const ItemRowStylesDark = css`
   background: #34364c;
 `;
 
-export const Container = styled.View`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: ${(props) =>
-    props.theme === "light" ? "hsl(0, 0%, 98%)" : "black"};
-`;
-
 export const BoxShadowStyle = css`
 shadow-color: #000;
 shadow-offset: {width: 0, height: 10};

@@ -1,15 +1,12 @@
 import styled from "styled-components/native";
-import {
-  CheckboxActiveBackground,
-  themeDarkTextLight,
-} from "../../global-styles";
+import { themeDarkTextLight } from "../../global-styles";
 
 interface CheckboxProps {
   active: boolean;
   theme: "dark" | "light";
 }
 
-export const Checkbox = styled.TouchableOpacity<CheckboxProps>`
+export const Checkbox = styled.View<CheckboxProps>`
   width: 24px;
   height: 24px;
   border-radius: 24px;
