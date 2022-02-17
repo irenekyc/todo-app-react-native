@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 import { TASK_STATUS_ACTIVE } from "../../constans/task";
 import { TaskItemType } from "../../typings/Task";
 import { addTask } from "../../reducer/task/actions";
+import updateStorageData from "../../helpers/updateLocalStorage";
 
 const Header: FunctionComponent = () => {
   const [newTaskInput, setNewTaskInput] = useState<string>("");
@@ -23,7 +24,6 @@ const Header: FunctionComponent = () => {
 
   const onSubmitHandler = () => {
     if (newTaskInput === "") return;
-    // TODO: add to do
     const newTask: TaskItemType = {
       id: uuidv4(),
       content: newTaskInput,
@@ -37,8 +37,10 @@ const Header: FunctionComponent = () => {
   const onPressThemeToggleButton = () => {
     if (theme === THEME_LIGHT) {
       dispatch(updateTheme(THEME_DARK));
+      updateStorageData({ theme: { data: THEME_DARK } });
     } else {
       dispatch(updateTheme(THEME_LIGHT));
+      updateStorageData({ theme: { data: THEME_LIGHT } });
     }
   };
 

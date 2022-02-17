@@ -1,0 +1,2 @@
+export const TASK_STORAGE = "TASK_STORAGE";
+export const THEME_STORAGE = "THEME_STORAGE";

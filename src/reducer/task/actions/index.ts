@@ -1,7 +1,7 @@
 import { taskSlice } from "../taskSlice";
 
 export const {
-  // loadTodo,
+  loadTodo,
   addTask,
   deleteTask,
   clearCompletedTasks,

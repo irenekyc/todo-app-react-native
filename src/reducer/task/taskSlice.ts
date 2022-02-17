@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { TaskItemType, TaskStatusType } from "../../typings/Task";
 import { TASK_STATUS_COMPLETED, TASK_STATUS_ACTIVE } from "../../constans/task";
-import { updateTaskStatus } from "./actions";
+import updateLocalStorage from "../../helpers/updateLocalStorage";
 
 export interface TaskState {
   tasks: TaskItemType[];
@@ -40,15 +40,15 @@ export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    // loadTodo: (state, action: PayloadAction<TaskItemType[]>) => {
-    //   state.tasks = action.payload;
-    //   state.number = updateTaskNumber(action.payload);
-    // },
+    loadTodo: (state, action: PayloadAction<TaskItemType[]>) => {
+      state.tasks = action.payload;
+      state.number = updateTaskNumber(action.payload);
+    },
     addTask: (state, action: PayloadAction<TaskItemType>) => {
       const newTaskList = [...state.tasks, action.payload];
       state.tasks = newTaskList;
       state.number = updateTaskNumber(newTaskList);
-      // updateTasksLocalStorage(newTaskList);
+      updateLocalStorage({ task: { data: newTaskList } });
     },
     deleteTask: (state, action: PayloadAction<string>) => {
       const newTaskList = state.tasks.filter(
@@ -56,7 +56,7 @@ export const taskSlice = createSlice({
       );
       state.tasks = newTaskList;
       state.number = updateTaskNumber(newTaskList);
-      // updateTasksLocalStorage(newTaskList);
+      updateLocalStorage({ task: { data: newTaskList } });
     },
     clearCompletedTasks: (state) => {
       const newTaskList = state.tasks.filter(
@@ -64,7 +64,7 @@ export const taskSlice = createSlice({
       );
       state.tasks = newTaskList;
       state.number = updateTaskNumber(newTaskList);
-      // updateTasksLocalStorage(newTaskList);
+      updateLocalStorage({ task: { data: newTaskList } });
     },
     updateTaskStatus: (
       state,
@@ -82,7 +82,7 @@ export const taskSlice = createSlice({
       });
       state.tasks = newTaskList;
       state.number = updateTaskNumber(newTaskList);
-      // updateTasksLocalStorage(newTaskList);
+      updateLocalStorage({ task: { data: newTaskList } });
     },
   },
 });
