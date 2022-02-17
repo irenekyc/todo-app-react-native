@@ -7,9 +7,11 @@ import { RootState } from "../../store";
 import getLocalStorage from "../../helpers/getLocalStorage";
 import { loadTodo } from "../../reducer/task/actions";
 import { updateTheme } from "../../reducer/theme/actions";
+import Loading from "../../components/loading";
+import TransitedView from "../../components/transited-view";
 
 const Home: FunctionComponent = () => {
-  const { theme } = useSelector((state: RootState) => state.theme);
+  const { theme, firstLoaded } = useSelector((state: RootState) => state.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,11 +23,15 @@ const Home: FunctionComponent = () => {
     loadData();
   }, [dispatch]);
 
+  if (!firstLoaded) return <Loading />;
+
   return (
-    <Styled.Container theme={theme}>
-      <Header />
-      <TaskList />
-    </Styled.Container>
+    <TransitedView>
+      <Styled.Container theme={theme}>
+        <Header />
+        <TaskList />
+      </Styled.Container>
+    </TransitedView>
   );
 };
 

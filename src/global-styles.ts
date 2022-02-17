@@ -2,7 +2,6 @@ import styled, { css } from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const themeDarkCardBackground = "hsl(235, 24%, 19%)";
-
 export const activeBlue = "hsl(220, 98%, 61%)";
 
 export const themeDarkTextDark = "hsl(234, 39%, 85%)";

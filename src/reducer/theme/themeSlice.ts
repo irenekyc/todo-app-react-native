@@ -4,10 +4,12 @@ import { THEME_DEFAULT } from "../../constans/theme";
 
 export interface ThemeState {
   theme: ThemeType;
+  firstLoaded: boolean;
 }
 
 const initialState: ThemeState = {
   theme: THEME_DEFAULT,
+  firstLoaded: false,
 };
 
 export const themeSlice = createSlice({
@@ -16,6 +18,7 @@ export const themeSlice = createSlice({
   reducers: {
     updateTheme: (state, action: PayloadAction<ThemeType>) => {
       state.theme = action.payload;
+      state.firstLoaded = true;
     },
   },
 });

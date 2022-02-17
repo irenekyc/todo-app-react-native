@@ -7,6 +7,7 @@ export const Container = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  opacity: 1;
   background: ${(props) =>
     props.theme === THEME_LIGHT ? "hsl(0, 0%, 98%)" : "hsl(235, 21%, 11%)"};
 `;
